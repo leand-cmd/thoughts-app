@@ -3,7 +3,7 @@ import API_BASE_URL from '../config';
 
 const FormPensamiento = ({ onThoughtAdded }) => {
   const [text, setText] = useState('');
-  const [category, setCategory] = useState('personal');
+  const [category, setCategory] = useState('sin_categoria');
   const [sentiment, setSentiment] = useState('neutro');
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +26,7 @@ const FormPensamiento = ({ onThoughtAdded }) => {
 
       if (response.ok) {
         setText('');
-        setCategory('personal');
+        setCategory('sin_categoria');
         setSentiment('neutro');
         onThoughtAdded();
         alert('Pensamiento guardado!');
@@ -87,12 +87,36 @@ const FormPensamiento = ({ onThoughtAdded }) => {
                 boxSizing: 'border-box'
               }}
             >
-              <option value="personal">Personal</option>
+              <option value="sin_categoria">Sin Categoría (para después)</option>
               <option value="profesional">Profesional</option>
               <option value="liderazgo">Liderazgo</option>
-              <option value="tecnico">Técnico</option>
+              <option value="personal">Personal</option>
+              <option value="técnico">Técnico</option>
               <option value="relaciones">Relaciones</option>
               <option value="mentalidad">Mentalidad</option>
+              <option value="salud">Salud</option>
+              <option value="finanzas">Finanzas</option>
+              <option value="crecimiento">Crecimiento</option>
+              <option value="comunicación">Comunicación</option>
+              <option value="estrategia">Estrategia</option>
+              <option value="decisiones">Decisiones</option>
+              <option value="conflictos">Conflictos</option>
+              <option value="motivación">Motivación</option>
+              <option value="autoconfianza">Autoconfianza</option>
+              <option value="familia">Familia</option>
+              <option value="tiempo">Tiempo/Productividad</option>
+              <option value="creatividad">Creatividad</option>
+              <option value="desafíos">Desafíos</option>
+              <option value="éxitos">Éxitos/Logros</option>
+              <option value="emociones">Emociones</option>
+              <option value="aprendizaje">Aprendizaje</option>
+              <option value="objetivos">Objetivos</option>
+              <option value="miedos">Miedos/Inseguridades</option>
+              <option value="oportunidades">Oportunidades</option>
+              <option value="feedback">Crítica/Retroalimentación</option>
+              <option value="experiencias">Experiencias</option>
+              <option value="ideas">Ideas</option>
+              <option value="otro">Otro</option>
             </select>
           </div>
 
