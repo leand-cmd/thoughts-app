@@ -146,6 +146,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'https://thoughts-app-production.up.railway.app',
+    'https://accurate-magic-production-b430.up.railway.app',
 ]
 
 # Railway Production Settings
