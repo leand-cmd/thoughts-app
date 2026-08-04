@@ -3,12 +3,16 @@ from django.utils import timezone
 
 class Thought(models.Model):
     CATEGORY_CHOICES = [
+        ('sin_categoria', 'Sin Categoría'),
         ('profesional', 'Profesional'),
         ('liderazgo', 'Liderazgo'),
         ('personal', 'Personal'),
-        ('tecnico', 'Técnico'),
+        ('técnico', 'Técnico'),
         ('relaciones', 'Relaciones'),
         ('mentalidad', 'Mentalidad'),
+        ('salud', 'Salud'),
+        ('finanzas', 'Finanzas'),
+        ('crecimiento', 'Crecimiento'),
         ('otro', 'Otro'),
     ]
 
@@ -24,7 +28,7 @@ class Thought(models.Model):
     category = models.CharField(
         max_length=20,
         choices=CATEGORY_CHOICES,
-        default='otro',
+        default='sin_categoria',
         blank=True,
         null=True
     )
