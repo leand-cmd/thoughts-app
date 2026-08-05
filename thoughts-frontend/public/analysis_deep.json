@@ -1,0 +1,234 @@
+{
+  "summary": {
+    "total_thoughts": 46,
+    "positive": 6,
+    "negative": 33,
+    "neutral": 7,
+    "unique_keywords": 25,
+    "negativity_percent": 71
+  },
+  "key_findings": [
+    "🎭 Arquetipos: 😔 El Pesimista: Enfoque negativo dominante",
+    "🚨 Áreas críticas: 3",
+    "💪 Fortalezas: 📈 Autoconciencia: Reflexiona sobre sus pensamientos",
+    "❌ Debilidades: ❤️ Comunicación: Desconexión con pareja",
+    "⚡ Próximas acciones: 3 pasos"
+  ],
+  "categories": {
+    "relaciones": {
+      "positivo": 0,
+      "negativo": 3,
+      "neutro": 0,
+      "total": 3
+    },
+    "autoconfianza": {
+      "positivo": 0,
+      "negativo": 2,
+      "neutro": 0,
+      "total": 2
+    },
+    "profesional": {
+      "positivo": 1,
+      "negativo": 9,
+      "neutro": 3,
+      "total": 13
+    },
+    "emociones": {
+      "positivo": 0,
+      "negativo": 3,
+      "neutro": 1,
+      "total": 4
+    },
+    "miedos": {
+      "positivo": 0,
+      "negativo": 2,
+      "neutro": 0,
+      "total": 2
+    },
+    "motivación": {
+      "positivo": 1,
+      "negativo": 2,
+      "neutro": 0,
+      "total": 3
+    },
+    "técnico": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 0,
+      "total": 1
+    },
+    "liderazgo": {
+      "positivo": 0,
+      "negativo": 0,
+      "neutro": 1,
+      "total": 1
+    },
+    "crecimiento": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 0,
+      "total": 1
+    },
+    "finanzas": {
+      "positivo": 0,
+      "negativo": 4,
+      "neutro": 0,
+      "total": 4
+    },
+    "familia": {
+      "positivo": 0,
+      "negativo": 3,
+      "neutro": 0,
+      "total": 3
+    },
+    "estrategia": {
+      "positivo": 0,
+      "negativo": 1,
+      "neutro": 0,
+      "total": 1
+    },
+    "objetivos": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 0,
+      "total": 1
+    },
+    "desafíos": {
+      "positivo": 0,
+      "negativo": 1,
+      "neutro": 0,
+      "total": 1
+    },
+    "personal": {
+      "positivo": 0,
+      "negativo": 1,
+      "neutro": 0,
+      "total": 1
+    },
+    "mentalidad": {
+      "positivo": 0,
+      "negativo": 2,
+      "neutro": 1,
+      "total": 3
+    },
+    "sin_categoria": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 1,
+      "total": 2
+    }
+  },
+  "patterns": {
+    "rumiacion": 3,
+    "catastrofismo": 3,
+    "autoconfianza_baja": 2,
+    "victimizacion": 3,
+    "perfeccionismo": 4,
+    "comparacion": 0
+  },
+  "archetypes": [
+    "😔 El Pesimista: Enfoque negativo dominante"
+  ],
+  "critical_areas": [
+    {
+      "area": "Relación Amorosa",
+      "urgencia": "CRÍTICA",
+      "indicadores": "3/4 menciones negativas",
+      "recomendacion": "Terapia de pareja + comunicación profunda"
+    },
+    {
+      "area": "Finanzas",
+      "urgencia": "ALTA",
+      "indicadores": "2/5 preocupaciones",
+      "recomendacion": "Plan presupuestario + ingresos adicionales"
+    },
+    {
+      "area": "Liderazgo/Asociación",
+      "urgencia": "MEDIA",
+      "indicadores": "5/8 mencionada con dudas",
+      "recomendacion": "Delegar tareas + establecer límites de horario"
+    }
+  ],
+  "personality_matrix": {
+    "apertura": 0.7,
+    "responsabilidad": 0.85,
+    "extroversion": 0.5,
+    "amabilidad": 0.75,
+    "estabilidad": 0.3
+  },
+  "timeline": [
+    {
+      "dia": 1,
+      "sentimiento": "negativo",
+      "categoria": "motivación",
+      "preview": "No logro mantenerme motivado por mucho tiempo..."
+    },
+    {
+      "dia": 2,
+      "sentimiento": "negativo",
+      "categoria": "autoconfianza",
+      "preview": "No creo en mi mismo, dudo demasiado de mis capacid..."
+    },
+    {
+      "dia": 3,
+      "sentimiento": "negativo",
+      "categoria": "miedos",
+      "preview": "creo que la gente duda de la asociacion..."
+    },
+    {
+      "dia": 4,
+      "sentimiento": "negativo",
+      "categoria": "emociones",
+      "preview": "Me molesta que no puedo mantenerle financieramente..."
+    },
+    {
+      "dia": 5,
+      "sentimiento": "negativo",
+      "categoria": "profesional",
+      "preview": "Es dificil trabajar con un compañero en mi laburo..."
+    },
+    {
+      "dia": 6,
+      "sentimiento": "negativo",
+      "categoria": "emociones",
+      "preview": "Me frustra la situación actual del paso..."
+    },
+    {
+      "dia": 7,
+      "sentimiento": "neutro",
+      "categoria": "emociones",
+      "preview": "Quiero ser mas fuerte emocionalmente..."
+    },
+    {
+      "dia": 8,
+      "sentimiento": "neutro",
+      "categoria": "profesional",
+      "preview": "Quiero mas reconocimiento en lo laboral..."
+    },
+    {
+      "dia": 9,
+      "sentimiento": "negativo",
+      "categoria": "autoconfianza",
+      "preview": "Quiero mas reconocimiento en la asociación..."
+    },
+    {
+      "dia": 10,
+      "sentimiento": "negativo",
+      "categoria": "relaciones",
+      "preview": "Me molesta que mi pareja no me quiera ayudar con m..."
+    }
+  ],
+  "psychological_profile": {
+    "strengths": [
+      "📈 Autoconciencia: Reflexiona sobre sus pensamientos"
+    ],
+    "weaknesses": [
+      "❤️ Comunicación: Desconexión con pareja"
+    ],
+    "priorities": [
+      "🚨 [SEMANA 1] Relación Amorosa: Terapia de pareja + comunicación profunda",
+      "⚡ [SEMANA 2-3] Finanzas: Plan presupuestario + ingresos adicionales",
+      "💪 [DIARIO] Continúa gym: Es tu ancla de estabilidad"
+    ]
+  }
+}
