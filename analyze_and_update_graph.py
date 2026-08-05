@@ -265,6 +265,16 @@ def prioritize_actions(critical_areas, patterns):
 # GENERAR ANÁLISIS
 print("\n🔬 Analizando perfil psicológico...")
 analysis_deep = analyze_psychological_profile(thoughts)
+print(f"DEBUG 1: type(analysis_deep) = {type(analysis_deep)}")
+print(f"DEBUG 2: analysis_deep is None = {analysis_deep is None}")
+print(f"DEBUG 3: analysis_deep.keys() = {list(analysis_deep.keys()) if analysis_deep else 'NONE'}")
+print(f"DEBUG 4: analysis_deep['summary'] = {analysis_deep.get('summary', 'NO EXISTE')}")
+print(f"DEBUG 1: analysis_deep type = {type(analysis_deep)}")
+print(f"DEBUG 2: analysis_deep is None = {analysis_deep is None}")
+if analysis_deep:
+    print(f"DEBUG 3: analysis_deep keys = {list(analysis_deep.keys())}")
+else:
+    print("DEBUG 3: analysis_deep es None o vacío")
 
 # Nodos
 prof_keywords = ['liderazgo', 'equipo', 'cliente', 'estrategia', 'asociación', 'compañero']
@@ -308,11 +318,20 @@ analysis_path = 'thoughts-frontend/public/analysis_deep.json'
 
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
+print(f"DEBUG: analysis_deep = {analysis_deep}")
+print(f"DEBUG: analysis_deep keys = {analysis_deep.keys() if analysis_deep else 'NONE'}")
+
 with open(output_path, 'w', encoding='utf-8') as f:
     json.dump(graph_data, f, ensure_ascii=False, indent=2)
 
-with open(analysis_path, 'w', encoding='utf-8') as f:
-    json.dump(analysis_deep, f, ensure_ascii=False, indent=2)
+print(f"DEBUG SAVE 1: analysis_path = {analysis_path}")
+print(f"DEBUG SAVE 2: len(analysis_deep) = {len(str(analysis_deep))}")
+try:
+    with open(analysis_path, 'w', encoding='utf-8') as f:
+        json.dump(analysis_deep, f, ensure_ascii=False, indent=2)
+    print(f"✅ DEBUG SAVE 3: Archivo guardado exitosamente")
+except Exception as e:
+    print(f"❌ DEBUG SAVE 3: ERROR al guardar = {e}")
 
 print(f"\n✅ ANÁLISIS PSICOLÓGICO COMPLETADO!")
 print(f"\n📊 RADIOGRAFÍA MENTAL:")
