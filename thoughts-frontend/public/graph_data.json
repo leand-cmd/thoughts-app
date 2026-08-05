@@ -1,0 +1,241 @@
+{
+  "nodes": [
+    {
+      "id": "asociación",
+      "category": "personal",
+      "size": 12.0
+    },
+    {
+      "id": "pareja",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "motivado",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "dinero",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "empresa",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "tareas",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "reconocimiento",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "compañero",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "hijo",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "trabajo",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "vida",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "problemas",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "casa",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "años",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "peso",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "asociacion",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "laboral",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "fuerte",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "situación",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "actual",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "paso",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "dificil",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "laburo",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "financieramente",
+      "category": "personal",
+      "size": 5
+    },
+    {
+      "id": "mamá",
+      "category": "personal",
+      "size": 5
+    }
+  ],
+  "links": [
+    {
+      "source": "pareja",
+      "target": "tareas",
+      "strength": 0.75
+    },
+    {
+      "source": "pareja",
+      "target": "asociacion",
+      "strength": 0.75
+    },
+    {
+      "source": "tareas",
+      "target": "asociacion",
+      "strength": 0.75
+    },
+    {
+      "source": "reconocimiento",
+      "target": "asociación",
+      "strength": 0.75
+    },
+    {
+      "source": "reconocimiento",
+      "target": "laboral",
+      "strength": 0.75
+    },
+    {
+      "source": "situación",
+      "target": "actual",
+      "strength": 0.75
+    },
+    {
+      "source": "situación",
+      "target": "paso",
+      "strength": 0.75
+    },
+    {
+      "source": "actual",
+      "target": "paso",
+      "strength": 0.75
+    },
+    {
+      "source": "dificil",
+      "target": "compañero",
+      "strength": 0.75
+    },
+    {
+      "source": "dificil",
+      "target": "laburo",
+      "strength": 0.75
+    },
+    {
+      "source": "compañero",
+      "target": "laburo",
+      "strength": 0.75
+    },
+    {
+      "source": "financieramente",
+      "target": "hijo",
+      "strength": 0.75
+    },
+    {
+      "source": "financieramente",
+      "target": "pareja",
+      "strength": 0.75
+    },
+    {
+      "source": "financieramente",
+      "target": "mamá",
+      "strength": 0.75
+    },
+    {
+      "source": "hijo",
+      "target": "pareja",
+      "strength": 0.75
+    },
+    {
+      "source": "hijo",
+      "target": "mamá",
+      "strength": 0.75
+    },
+    {
+      "source": "pareja",
+      "target": "mamá",
+      "strength": 0.75
+    },
+    {
+      "source": "tareas",
+      "target": "asociación",
+      "strength": 0.75
+    },
+    {
+      "source": "años",
+      "target": "dinero",
+      "strength": 0.75
+    },
+    {
+      "source": "peso",
+      "target": "empresa",
+      "strength": 0.75
+    },
+    {
+      "source": "años",
+      "target": "casa",
+      "strength": 0.75
+    }
+  ],
+  "stats": {
+    "total_thoughts": 46,
+    "unique_keywords": 25,
+    "total_connections": 21
+  }
+}
