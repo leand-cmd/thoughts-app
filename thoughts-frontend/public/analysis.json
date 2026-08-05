@@ -1,0 +1,139 @@
+{
+  "summary": {
+    "total_thoughts": 46,
+    "total_concepts": 25,
+    "total_connections": 21,
+    "positive": 6,
+    "negative": 33,
+    "neutral": 7
+  },
+  "insights": [
+    "📊 Tienes 46 pensamientos registrados",
+    "🔴 33 son negativos (71%)",
+    "🟢 6 son positivos (13%)",
+    "🧠 Mencionas principalmente: asociación, pareja, motivado, dinero, empresa"
+  ],
+  "clusters": {
+    "profesional": [
+      "asociación",
+      "compañero"
+    ],
+    "personal": [
+      "pareja",
+      "motivado",
+      "dinero",
+      "empresa",
+      "tareas",
+      "reconocimiento",
+      "hijo",
+      "trabajo",
+      "vida",
+      "problemas",
+      "casa",
+      "años",
+      "peso",
+      "asociacion",
+      "laboral",
+      "fuerte",
+      "situación",
+      "actual",
+      "paso",
+      "dificil",
+      "laburo",
+      "financieramente",
+      "mamá"
+    ]
+  },
+  "sentiment_analysis": {
+    "relaciones": {
+      "positivo": 0,
+      "negativo": 3,
+      "neutro": 0
+    },
+    "autoconfianza": {
+      "positivo": 0,
+      "negativo": 2,
+      "neutro": 0
+    },
+    "profesional": {
+      "positivo": 1,
+      "negativo": 9,
+      "neutro": 3
+    },
+    "emociones": {
+      "positivo": 0,
+      "negativo": 3,
+      "neutro": 1
+    },
+    "miedos": {
+      "positivo": 0,
+      "negativo": 2,
+      "neutro": 0
+    },
+    "motivación": {
+      "positivo": 1,
+      "negativo": 2,
+      "neutro": 0
+    },
+    "técnico": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 0
+    },
+    "liderazgo": {
+      "positivo": 0,
+      "negativo": 0,
+      "neutro": 1
+    },
+    "crecimiento": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 0
+    },
+    "finanzas": {
+      "positivo": 0,
+      "negativo": 4,
+      "neutro": 0
+    },
+    "familia": {
+      "positivo": 0,
+      "negativo": 3,
+      "neutro": 0
+    },
+    "estrategia": {
+      "positivo": 0,
+      "negativo": 1,
+      "neutro": 0
+    },
+    "objetivos": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 0
+    },
+    "desafíos": {
+      "positivo": 0,
+      "negativo": 1,
+      "neutro": 0
+    },
+    "personal": {
+      "positivo": 0,
+      "negativo": 1,
+      "neutro": 0
+    },
+    "mentalidad": {
+      "positivo": 0,
+      "negativo": 2,
+      "neutro": 1
+    },
+    "sin_categoria": {
+      "positivo": 1,
+      "negativo": 0,
+      "neutro": 1
+    }
+  },
+  "key_findings": [
+    "💡 BALANCE: Buen enfoque en lo personal. Cuida no descuidar objetivos profesionales.",
+    "😟 EMOCIONAL: 71% de pensamientos son negativos. Considera hablar con alguien.",
+    "🎯 ENFOQUE: Tus mayores preocupaciones son: asociación, pareja, motivado"
+  ]
+}

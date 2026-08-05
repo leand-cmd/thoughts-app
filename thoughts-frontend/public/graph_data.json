@@ -2,7 +2,7 @@
   "nodes": [
     {
       "id": "asociación",
-      "category": "personal",
+      "category": "profesional",
       "size": 12.0
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "id": "compañero",
-      "category": "personal",
+      "category": "profesional",
       "size": 5
     },
     {
