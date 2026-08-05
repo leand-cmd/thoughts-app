@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import ThoughtCloud from './components/ThoughtCloud';
 import FormPensamiento from './components/FormPensamiento';
+import AnalysisDashboard from './components/AnalysisDashboard';
 
 function App() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -19,6 +20,8 @@ function App() {
         <FormPensamiento onThoughtAdded={handleThoughtAdded} />
 
         <ThoughtCloud key={refreshKey} />
+
+        <AnalysisDashboard />
       </div>
     </div>
   );

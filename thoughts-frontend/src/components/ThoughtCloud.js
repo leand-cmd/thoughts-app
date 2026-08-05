@@ -14,7 +14,7 @@ const ThoughtCloud = () => {
         const data = await response.json();
 
         // Cargar análisis
-        const analysisResponse = await fetch('/analysis.json');
+        const analysisResponse = await fetch('/analysis_deep.json');
         const analysisData = await analysisResponse.json();
         setAnalysis(analysisData);
 
