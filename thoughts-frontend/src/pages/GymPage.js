@@ -108,7 +108,7 @@ const GymPage = () => {
 
         <div style={{ marginBottom: '48px' }}>
           <h1 style={{
-            fontSize: '56px',
+            fontSize: '40px',
             fontWeight: '700',
             marginBottom: '8px',
             background: 'linear-gradient(135deg, #fff 0%, #0070ff 100%)',
@@ -125,21 +125,22 @@ const GymPage = () => {
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '16px',
-          padding: '32px',
-          marginBottom: '40px'
+          padding: '24px',
+          marginBottom: '40px',
+          maxWidth: '480px'
         }}>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-            <h2 style={{ fontSize: '28px', fontWeight: '600', margin: 0, color: '#fff' }}>
+            <h2 style={{ fontSize: '18px', fontWeight: '600', margin: 0, color: '#fff' }}>
               {currentDate.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
             </h2>
             <div style={{ display: 'flex', gap: '12px' }}>
               <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))}
-                style={{ padding: '8px 16px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                style={{ padding: '6px 12px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}>
                 ← Anterior
               </button>
               <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))}
-                style={{ padding: '8px 16px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                style={{ padding: '6px 12px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}>
                 Siguiente →
               </button>
             </div>
