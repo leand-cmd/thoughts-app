@@ -181,9 +181,7 @@ const GymPage = () => {
                     background: !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.08)' : (data?.gym ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.03)'),
                     border: data?.gym ? '1.5px solid #10b981' : '1px solid rgba(255, 255, 255, 0.08)',
                     transition: 'all 0.2s ease',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    padding: '4px'
+                    padding: '6px'
                   }}
                   onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(100, 100, 100, 0.15)' : 'rgba(0, 112, 255, 0.08)')}
                   onMouseLeave={(e) => {
@@ -192,14 +190,14 @@ const GymPage = () => {
                 >
                   {day && (
                     <>
-                      <div style={{ fontSize: '16px', fontWeight: '700', color: data?.gym ? '#10b981' : '#ccc', marginBottom: '2px' }}>
+                      <div style={{ fontSize: '15px', fontWeight: '700', color: data?.gym ? '#10b981' : '#ccc', marginBottom: '2px' }}>
                         {day}
                       </div>
-                      {data?.gym && <div style={{ fontSize: '9px', color: '#10b981', marginBottom: '2px' }}>✓</div>}
+                      {data?.gym && <div style={{ fontSize: '10px', color: '#10b981', marginBottom: '1px' }}>✓</div>}
                       {remedyIcons.length > 0 && (
-                        <div style={{ display: 'flex', gap: '1px', fontSize: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '2px', fontSize: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
                           {remedyIcons.map((icon, i) => (
-                            <span key={i} style={{ opacity: 0.8 }}>{icon}</span>
+                            <span key={i}>{icon}</span>
                           ))}
                         </div>
                       )}
