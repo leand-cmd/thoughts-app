@@ -148,10 +148,10 @@ const GymPage = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(7, 1fr)',
-            gap: '12px'
+            gap: '6px'
           }}>
             {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(d => (
-              <div key={d} style={{ textAlign: 'center', fontWeight: '600', color: '#999', fontSize: '12px', paddingBottom: '12px' }}>
+              <div key={d} style={{ textAlign: 'center', fontWeight: '600', color: '#666', fontSize: '11px', paddingBottom: '6px' }}>
                 {d}
               </div>
             ))}
@@ -159,13 +159,13 @@ const GymPage = () => {
             {days.map((day, idx) => {
               const data = getDayData(day);
               const isWeekendDay = isWeekend(day);
-              const remedyIcons = data ? [
-                data.creatina && '💊',
-                data.vitamina_d && '☀️',
-                data.omega3 && '🐟',
-                data.magnesio && '✨',
-                data.zinc && '⚡'
-              ].filter(Boolean) : [];
+              const remediesMarked = data ? [
+                data.creatina,
+                data.vitamina_d,
+                data.omega3,
+                data.magnesio,
+                data.zinc
+              ].filter(Boolean).length : 0;
 
               return (
                 <div key={idx}
@@ -176,29 +176,32 @@ const GymPage = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '10px',
+                    borderRadius: '8px',
                     cursor: day ? 'pointer' : 'default',
-                    background: !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.08)' : (data?.gym ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.03)'),
-                    border: data?.gym ? '1.5px solid #10b981' : '1px solid rgba(255, 255, 255, 0.08)',
+                    background: !day ? 'transparent' : isWeekendDay ? 'rgba(80, 80, 80, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.12)' : 'rgba(255, 255, 255, 0.02)'),
+                    border: data?.gym ? '1.5px solid #10b981' : '1px solid rgba(255, 255, 255, 0.06)',
                     transition: 'all 0.2s ease',
-                    padding: '6px'
+                    padding: '3px',
+                    minHeight: '60px'
                   }}
-                  onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(100, 100, 100, 0.15)' : 'rgba(0, 112, 255, 0.08)')}
+                  onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(80, 80, 80, 0.15)' : 'rgba(0, 112, 255, 0.06)')}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.08)' : (data?.gym ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.03)');
+                    e.currentTarget.style.background = !day ? 'transparent' : isWeekendDay ? 'rgba(80, 80, 80, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.12)' : 'rgba(255, 255, 255, 0.02)');
                   }}
                 >
                   {day && (
                     <>
-                      <div style={{ fontSize: '15px', fontWeight: '700', color: data?.gym ? '#10b981' : '#ccc', marginBottom: '2px' }}>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: data?.gym ? '#10b981' : '#aaa', lineHeight: '1' }}>
                         {day}
                       </div>
-                      {data?.gym && <div style={{ fontSize: '10px', color: '#10b981', marginBottom: '1px' }}>✓</div>}
-                      {remedyIcons.length > 0 && (
-                        <div style={{ display: 'flex', gap: '2px', fontSize: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                          {remedyIcons.map((icon, i) => (
-                            <span key={i}>{icon}</span>
-                          ))}
+                      {data?.gym && (
+                        <div style={{ fontSize: '8px', color: '#10b981', marginTop: '1px', marginBottom: '1px' }}>
+                          ✓ Gym
+                        </div>
+                      )}
+                      {remediesMarked > 0 && (
+                        <div style={{ fontSize: '10px', color: '#fff', marginTop: '1px' }}>
+                          • × {remediesMarked}
                         </div>
                       )}
                     </>
