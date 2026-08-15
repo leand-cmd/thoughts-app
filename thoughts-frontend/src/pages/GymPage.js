@@ -100,7 +100,7 @@ const GymPage = () => {
     <div style={{
       background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f1e 100%)',
       minHeight: '100vh',
-      padding: '48px 24px',
+      padding: '16px',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif'
     }}>
 
@@ -134,14 +134,14 @@ const GymPage = () => {
             <h2 style={{ fontSize: '18px', fontWeight: '600', margin: 0, color: '#fff' }}>
               {currentDate.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
             </h2>
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ display: 'flex', gap: '8px' }}>
               <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))}
-                style={{ padding: '6px 12px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}>
-                ← Anterior
+                style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.08)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                ‹
               </button>
               <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))}
-                style={{ padding: '6px 12px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}>
-                Siguiente →
+                style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.08)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                ›
               </button>
             </div>
           </div>
@@ -165,7 +165,7 @@ const GymPage = () => {
                 <div key={idx}
                   onClick={() => day && handleDayClick(day)}
                   style={{
-                    aspectRatio: '1',
+                    aspectRatio: '0.8',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -175,8 +175,9 @@ const GymPage = () => {
                     background: !day ? 'transparent' : isWeekendDay ? 'rgba(80, 80, 80, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.12)' : 'rgba(255, 255, 255, 0.02)'),
                     border: data?.gym ? '1px solid #10b981' : '1px solid rgba(255, 255, 255, 0.05)',
                     transition: 'all 0.2s ease',
-                    padding: '2px',
-                    fontSize: '9px'
+                    padding: '4px',
+                    fontSize: '10px',
+                    gap: '2px'
                   }}
                   onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(80, 80, 80, 0.15)' : 'rgba(0, 112, 255, 0.06)')}
                   onMouseLeave={(e) => {
