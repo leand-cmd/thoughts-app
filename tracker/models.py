@@ -98,3 +98,22 @@ class EjercicioRealizado(models.Model):
 
     def __str__(self):
         return f"{self.fecha} - {self.ejercicio.nombre}"
+
+
+class RegistroComida(models.Model):
+    MOMENTOS = [
+        ('desayuno', 'Desayuno'),
+        ('almuerzo', 'Almuerzo'),
+        ('merienda', 'Merienda'),
+        ('cena', 'Cena'),
+        ('snack', 'Snack'),
+    ]
+    fecha = models.DateField()
+    momento = models.CharField(max_length=20, choices=MOMENTOS)
+    detalle = models.TextField()
+
+    class Meta:
+        ordering = ['-fecha', 'momento']
+
+    def __str__(self):
+        return f"{self.fecha} - {self.momento}"
