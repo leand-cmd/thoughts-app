@@ -14,7 +14,7 @@ function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#111827', color: '#fff' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f1e 100%)', color: '#fff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px' }}>
 
         <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
@@ -22,7 +22,7 @@ function App() {
             onClick={() => setActivePage('pensamientos')}
             style={{
               padding: '10px 20px',
-              backgroundColor: activePage === 'pensamientos' ? '#3b82f6' : '#1f2937',
+              backgroundColor: activePage === 'pensamientos' ? '#0070ff' : 'rgba(255,255,255,0.05)',
               color: '#fff',
               border: 'none',
               borderRadius: '6px',
@@ -37,7 +37,7 @@ function App() {
             onClick={() => setActivePage('gym')}
             style={{
               padding: '10px 20px',
-              backgroundColor: activePage === 'gym' ? '#3b82f6' : '#1f2937',
+              backgroundColor: activePage === 'gym' ? '#0070ff' : 'rgba(255,255,255,0.05)',
               color: '#fff',
               border: 'none',
               borderRadius: '6px',
