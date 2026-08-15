@@ -1,10 +1,261 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const GymPage = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [dailyLogs, setDailyLogs] = useState({});
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [editData, setEditData] = useState({ gym: false, creatina: false, vitamina_d: false, omega3: false, magnesio: false, zinc: false });
+
+  useEffect(() => {
+    fetchDailyLogs();
+  }, [currentDate]);
+
+  const fetchDailyLogs = async () => {
+    try {
+      const response = await fetch('https://thoughts-app-production.up.railway.app/api/daily-logs/');
+      const data = await response.json();
+      const logsMap = {};
+      data.results.forEach(log => {
+        logsMap[log.fecha] = log;
+      });
+      setDailyLogs(logsMap);
+    } catch (err) {
+      console.error('Error fetching daily logs:', err);
+    }
+  };
+
+  const getDaysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  };
+
+  const handleDayClick = (day) => {
+    const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    setSelectedDate(dateStr);
+    const existing = dailyLogs[dateStr];
+    if (existing) {
+      setEditData(existing);
+    } else {
+      setEditData({ gym: false, creatina: false, vitamina_d: false, omega3: false, magnesio: false, zinc: false });
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      const method = dailyLogs[selectedDate] ? 'PUT' : 'POST';
+      const url = dailyLogs[selectedDate]
+        ? `https://thoughts-app-production.up.railway.app/api/daily-logs/${selectedDate}/`
+        : 'https://thoughts-app-production.up.railway.app/api/daily-logs/';
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fecha: selectedDate, ...editData })
+      });
+
+      if (response.ok) {
+        fetchDailyLogs();
+        setSelectedDate(null);
+      }
+    } catch (err) {
+      console.error('Error saving:', err);
+    }
+  };
+
+  const days = [];
+  const daysInMonth = getDaysInMonth(currentDate);
+  const firstDay = getFirstDayOfMonth(currentDate);
+
+  for (let i = 0; i < firstDay; i++) {
+    days.push(null);
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    days.push(i);
+  }
+
+  const isWeekend = (day) => {
+    if (!day) return false;
+    const d = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    return d.getDay() === 0 || d.getDay() === 6;
+  };
+
+  const getDayData = (day) => {
+    if (!day) return null;
+    const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    return dailyLogs[dateStr];
+  };
+
+  const remedies = [
+    { key: 'creatina', label: 'Creatina', emoji: '💊' },
+    { key: 'vitamina_d', label: 'Vitamina D', emoji: '☀️' },
+    { key: 'omega3', label: 'Omega-3', emoji: '🐟' },
+    { key: 'magnesio', label: 'Magnesio', emoji: '✨' },
+    { key: 'zinc', label: 'Zinc', emoji: '⚡' }
+  ];
+
   return (
-    <div>
-      <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px' }}>Módulo Gym</h1>
-      <p style={{ color: '#9ca3af' }}>Próximamente: calendario, comidas y ejercicios</p>
+    <div style={{
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f1e 100%)',
+      minHeight: '100vh',
+      padding: '48px 24px',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif'
+    }}>
+
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+
+        <div style={{ marginBottom: '48px' }}>
+          <h1 style={{
+            fontSize: '56px',
+            fontWeight: '700',
+            marginBottom: '8px',
+            background: 'linear-gradient(135deg, #fff 0%, #0070ff 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-2px'
+          }}>💪 Gym</h1>
+          <p style={{ color: '#666', fontSize: '18px', margin: 0 }}>Seguimiento diario: gym, suplementos y progreso</p>
+        </div>
+
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.02)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '16px',
+          padding: '32px',
+          marginBottom: '40px'
+        }}>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: '600', margin: 0, color: '#fff' }}>
+              {currentDate.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
+            </h2>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))}
+                style={{ padding: '8px 16px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                ← Anterior
+              </button>
+              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))}
+                style={{ padding: '8px 16px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px' }}>
+                Siguiente →
+              </button>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(7, 1fr)',
+            gap: '12px'
+          }}>
+            {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(d => (
+              <div key={d} style={{ textAlign: 'center', fontWeight: '600', color: '#999', fontSize: '12px', paddingBottom: '12px' }}>
+                {d}
+              </div>
+            ))}
+
+            {days.map((day, idx) => {
+              const data = getDayData(day);
+              const isWeekendDay = isWeekend(day);
+              return (
+                <div key={idx}
+                  onClick={() => day && handleDayClick(day)}
+                  style={{
+                    aspectRatio: '1',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '12px',
+                    cursor: day ? 'pointer' : 'default',
+                    background: !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.05)'),
+                    border: data?.gym ? '2px solid #10b981' : '1px solid rgba(255, 255, 255, 0.1)',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                  onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(100, 100, 100, 0.2)' : 'rgba(0, 112, 255, 0.1)')}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.05)');
+                  }}
+                >
+                  {day && (
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{ fontSize: '20px', fontWeight: '700', color: data?.gym ? '#10b981' : '#fff', marginBottom: '4px' }}>
+                        {day}
+                      </div>
+                      {data?.gym && <div style={{ fontSize: '12px', color: '#10b981' }}>✓ Gym</div>}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {selectedDate && (
+          <div style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(5px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+          onClick={() => setSelectedDate(null)}>
+            <div style={{
+              background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f1e 100%)',
+              border: '1px solid rgba(0, 112, 255, 0.3)',
+              borderRadius: '16px',
+              padding: '40px',
+              maxWidth: '500px',
+              width: '90%',
+              backdropFilter: 'blur(10px)'
+            }}
+            onClick={(e) => e.stopPropagation()}>
+
+              <h3 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '24px', color: '#fff' }}>
+                {selectedDate}
+              </h3>
+
+              <div style={{ marginBottom: '32px' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.04)', borderRadius: '8px', cursor: 'pointer', marginBottom: '12px' }}>
+                  <input type="checkbox" checked={editData.gym} onChange={(e) => setEditData({...editData, gym: e.target.checked})}
+                    style={{ width: '20px', height: '20px', cursor: 'pointer' }} />
+                  <span style={{ color: '#fff', fontSize: '16px', flex: 1 }}>Fui al gym 💪</span>
+                </label>
+
+                <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  <div style={{ fontSize: '14px', color: '#999', marginBottom: '12px' }}>Remedios:</div>
+                  {remedies.map(r => (
+                    <label key={r.key} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px', cursor: 'pointer', marginBottom: '8px' }}>
+                      <input type="checkbox" checked={editData[r.key]} onChange={(e) => setEditData({...editData, [r.key]: e.target.checked})}
+                        style={{ width: '18px', height: '18px', cursor: 'pointer' }} />
+                      <span style={{ color: editData[r.key] ? '#10b981' : '#ccc', fontSize: '14px', flex: 1 }}>
+                        {r.emoji} {r.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button onClick={handleSave}
+                  style={{ flex: 1, padding: '12px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', fontWeight: '600' }}>
+                  Guardar
+                </button>
+                <button onClick={() => setSelectedDate(null)}
+                  style={{ flex: 1, padding: '12px', background: 'rgba(255, 255, 255, 0.1)', color: '#fff', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px', cursor: 'pointer', fontSize: '16px' }}>
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
