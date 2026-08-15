@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import ComidasPage from './ComidasPage';
 
 const GymPage = () => {
+  const [solapa, setSolapa] = useState('calendario');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [dailyLogs, setDailyLogs] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
@@ -119,6 +121,39 @@ const GymPage = () => {
           <p style={{ color: '#666', fontSize: '13px', margin: 0 }}>Seguimiento diario: gym, suplementos y progreso</p>
         </div>
 
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+          {[
+            { key: 'calendario', label: 'Calendario' },
+            { key: 'comidas', label: 'Comidas' },
+            { key: 'ejercicios', label: 'Ejercicios' }
+          ].map(s => (
+            <button key={s.key} onClick={() => setSolapa(s.key)}
+              style={{
+                padding: '8px 14px',
+                background: solapa === s.key ? '#0070ff' : 'rgba(255,255,255,0.05)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: solapa === s.key ? '600' : '400'
+              }}>
+              {s.label}
+            </button>
+          ))}
+        </div>
+
+        {solapa === 'comidas' && <ComidasPage />}
+
+        {solapa === 'ejercicios' && (
+          <div style={{ color: '#666', fontSize: '13px', padding: '20px' }}>
+            Próximamente
+          </div>
+        )}
+
+        {solapa === 'calendario' && (
+        <>
+
         <div style={{
           background: 'rgba(255, 255, 255, 0.02)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -206,6 +241,8 @@ const GymPage = () => {
             })}
           </div>
         </div>
+        </>
+        )}
 
         {selectedDate && (
           <div style={{
