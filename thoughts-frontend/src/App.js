@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ThoughtCloud from './components/ThoughtCloud';
 import FormPensamiento from './components/FormPensamiento';
 import AnalysisDashboard from './components/AnalysisDashboard';
+import GymPage from './pages/GymPage';
 
 function App() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -59,15 +60,7 @@ function App() {
           </>
         )}
 
-        {activePage === 'gym' && (
-          <>
-            <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px' }}>💪 Módulo Gym</h1>
-            <p style={{ color: '#9ca3af', marginBottom: '32px' }}>Calendario, comidas y ejercicios</p>
-            <div style={{ backgroundColor: '#1f2937', padding: '20px', borderRadius: '8px', color: '#d1d5db' }}>
-              Próximamente: calendario, comidas y ejercicios
-            </div>
-          </>
-        )}
+        {activePage === 'gym' && <GymPage />}
       </div>
     </div>
   );
