@@ -148,10 +148,10 @@ const GymPage = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(7, 1fr)',
-            gap: '6px'
+            gap: '4px'
           }}>
-            {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(d => (
-              <div key={d} style={{ textAlign: 'center', fontWeight: '600', color: '#666', fontSize: '11px', paddingBottom: '6px' }}>
+            {['D', 'L', 'M', 'M', 'J', 'V', 'S'].map(d => (
+              <div key={d} style={{ textAlign: 'center', fontWeight: '600', color: '#555', fontSize: '9px', paddingBottom: '4px' }}>
                 {d}
               </div>
             ))}
@@ -159,13 +159,6 @@ const GymPage = () => {
             {days.map((day, idx) => {
               const data = getDayData(day);
               const isWeekendDay = isWeekend(day);
-              const remediesMarked = data ? [
-                data.creatina,
-                data.vitamina_d,
-                data.omega3,
-                data.magnesio,
-                data.zinc
-              ].filter(Boolean).length : 0;
 
               return (
                 <div key={idx}
@@ -176,13 +169,13 @@ const GymPage = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '8px',
+                    borderRadius: '6px',
                     cursor: day ? 'pointer' : 'default',
                     background: !day ? 'transparent' : isWeekendDay ? 'rgba(80, 80, 80, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.12)' : 'rgba(255, 255, 255, 0.02)'),
-                    border: data?.gym ? '1.5px solid #10b981' : '1px solid rgba(255, 255, 255, 0.06)',
+                    border: data?.gym ? '1px solid #10b981' : '1px solid rgba(255, 255, 255, 0.05)',
                     transition: 'all 0.2s ease',
-                    padding: '3px',
-                    minHeight: '60px'
+                    padding: '2px',
+                    fontSize: '9px'
                   }}
                   onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(80, 80, 80, 0.15)' : 'rgba(0, 112, 255, 0.06)')}
                   onMouseLeave={(e) => {
@@ -191,17 +184,17 @@ const GymPage = () => {
                 >
                   {day && (
                     <>
-                      <div style={{ fontSize: '13px', fontWeight: '700', color: data?.gym ? '#10b981' : '#aaa', lineHeight: '1' }}>
+                      <div style={{ fontWeight: '700', color: data?.gym ? '#10b981' : '#888', lineHeight: '1.1' }}>
                         {day}
                       </div>
-                      {data?.gym && (
-                        <div style={{ fontSize: '8px', color: '#10b981', marginTop: '1px', marginBottom: '1px' }}>
-                          ✓ Gym
-                        </div>
-                      )}
-                      {remediesMarked > 0 && (
-                        <div style={{ fontSize: '10px', color: '#fff', marginTop: '1px' }}>
-                          • × {remediesMarked}
+                      {data?.gym && <div style={{ color: '#10b981', fontSize: '7px' }}>✓</div>}
+                      {data && (
+                        <div style={{ display: 'flex', gap: '1px', fontSize: '7px', color: '#ccc', lineHeight: '1' }}>
+                          {data.creatina && <span>C</span>}
+                          {data.vitamina_d && <span>D</span>}
+                          {data.omega3 && <span>O</span>}
+                          {data.magnesio && <span>M</span>}
+                          {data.zinc && <span>Z</span>}
                         </div>
                       )}
                     </>
