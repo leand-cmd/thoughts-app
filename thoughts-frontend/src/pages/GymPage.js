@@ -159,34 +159,51 @@ const GymPage = () => {
             {days.map((day, idx) => {
               const data = getDayData(day);
               const isWeekendDay = isWeekend(day);
+              const remedyIcons = data ? [
+                data.creatina && '💊',
+                data.vitamina_d && '☀️',
+                data.omega3 && '🐟',
+                data.magnesio && '✨',
+                data.zinc && '⚡'
+              ].filter(Boolean) : [];
+
               return (
                 <div key={idx}
                   onClick={() => day && handleDayClick(day)}
                   style={{
                     aspectRatio: '1',
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '12px',
+                    borderRadius: '10px',
                     cursor: day ? 'pointer' : 'default',
-                    background: !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.05)'),
-                    border: data?.gym ? '2px solid #10b981' : '1px solid rgba(255, 255, 255, 0.1)',
-                    transition: 'all 0.3s ease',
+                    background: !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.08)' : (data?.gym ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.03)'),
+                    border: data?.gym ? '1.5px solid #10b981' : '1px solid rgba(255, 255, 255, 0.08)',
+                    transition: 'all 0.2s ease',
                     position: 'relative',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    padding: '4px'
                   }}
-                  onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(100, 100, 100, 0.2)' : 'rgba(0, 112, 255, 0.1)')}
+                  onMouseEnter={(e) => day && (e.currentTarget.style.background = isWeekendDay ? 'rgba(100, 100, 100, 0.15)' : 'rgba(0, 112, 255, 0.08)')}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.1)' : (data?.gym ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.05)');
+                    e.currentTarget.style.background = !day ? 'transparent' : isWeekendDay ? 'rgba(100, 100, 100, 0.08)' : (data?.gym ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.03)');
                   }}
                 >
                   {day && (
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: '20px', fontWeight: '700', color: data?.gym ? '#10b981' : '#fff', marginBottom: '4px' }}>
+                    <>
+                      <div style={{ fontSize: '16px', fontWeight: '700', color: data?.gym ? '#10b981' : '#ccc', marginBottom: '2px' }}>
                         {day}
                       </div>
-                      {data?.gym && <div style={{ fontSize: '12px', color: '#10b981' }}>✓ Gym</div>}
-                    </div>
+                      {data?.gym && <div style={{ fontSize: '9px', color: '#10b981', marginBottom: '2px' }}>✓</div>}
+                      {remedyIcons.length > 0 && (
+                        <div style={{ display: 'flex', gap: '1px', fontSize: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                          {remedyIcons.map((icon, i) => (
+                            <span key={i} style={{ opacity: 0.8 }}>{icon}</span>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               );
