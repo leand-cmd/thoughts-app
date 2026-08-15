@@ -99,16 +99,15 @@ const GymPage = () => {
   return (
     <div style={{
       background: 'linear-gradient(135deg, #0a0a0a 0%, #0f0f1e 100%)',
-      minHeight: '100vh',
-      padding: '16px',
+      padding: '0',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif'
     }}>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-        <div style={{ marginBottom: '48px' }}>
+        <div style={{ marginBottom: '20px' }}>
           <h1 style={{
-            fontSize: '40px',
+            fontSize: '28px',
             fontWeight: '700',
             marginBottom: '8px',
             background: 'linear-gradient(135deg, #fff 0%, #0070ff 100%)',
@@ -117,17 +116,18 @@ const GymPage = () => {
             WebkitTextFillColor: 'transparent',
             letterSpacing: '-2px'
           }}>💪 Gym</h1>
-          <p style={{ color: '#666', fontSize: '18px', margin: 0 }}>Seguimiento diario: gym, suplementos y progreso</p>
+          <p style={{ color: '#666', fontSize: '13px', margin: 0 }}>Seguimiento diario: gym, suplementos y progreso</p>
         </div>
 
         <div style={{
           background: 'rgba(255, 255, 255, 0.02)',
-          backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '16px',
-          padding: '24px',
-          marginBottom: '40px',
-          maxWidth: '480px'
+          padding: '12px',
+          marginBottom: '24px',
+          maxWidth: '480px',
+          boxSizing: 'border-box',
+          width: '100%'
         }}>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
