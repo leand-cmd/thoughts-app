@@ -30,6 +30,8 @@ class Alimento(models.Model):
     ]
     nombre = models.CharField(max_length=100)
     tipo = models.CharField(max_length=20, choices=TIPOS, default='otro')
+    descripcion = models.TextField(blank=True)
+    porcion = models.CharField(max_length=100, blank=True)
     activo = models.BooleanField(default=True)
 
     class Meta:
