@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ComidasPage from './ComidasPage';
+import EjerciciosPage from './EjerciciosPage';
 
 const GymPage = () => {
   const [solapa, setSolapa] = useState('calendario');
@@ -145,11 +146,7 @@ const GymPage = () => {
 
         {solapa === 'comidas' && <ComidasPage />}
 
-        {solapa === 'ejercicios' && (
-          <div style={{ color: '#666', fontSize: '13px', padding: '20px' }}>
-            Próximamente
-          </div>
-        )}
+        {solapa === 'ejercicios' && <EjerciciosPage />}
 
         {solapa === 'calendario' && (
         <>
