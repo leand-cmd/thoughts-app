@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DailyLog, Alimento, ComidaDiaria, Ejercicio, EjercicioRealizado, RegistroComida
+from .models import DailyLog, Alimento, ComidaDiaria, Ejercicio, EjercicioRealizado, RegistroComida, RegistroEjercicio
 
 class DailyLogSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,4 +29,9 @@ class EjercicioRealizadoSerializer(serializers.ModelSerializer):
 class RegistroComidaSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegistroComida
+        fields = '__all__'
+
+class RegistroEjercicioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegistroEjercicio
         fields = '__all__'

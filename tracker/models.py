@@ -117,3 +117,15 @@ class RegistroComida(models.Model):
 
     def __str__(self):
         return f"{self.fecha} - {self.momento}"
+
+
+class RegistroEjercicio(models.Model):
+    fecha = models.DateField()
+    detalle = models.TextField()
+    duracion_min = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-fecha']
+
+    def __str__(self):
+        return f"{self.fecha}"

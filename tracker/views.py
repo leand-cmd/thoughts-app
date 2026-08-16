@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import DailyLog, Alimento, ComidaDiaria, Ejercicio, EjercicioRealizado, RegistroComida
-from .serializers import DailyLogSerializer, AlimentoSerializer, ComidaDiariaSerializer, EjercicioSerializer, EjercicioRealizadoSerializer, RegistroComidaSerializer
+from .models import DailyLog, Alimento, ComidaDiaria, Ejercicio, EjercicioRealizado, RegistroComida, RegistroEjercicio
+from .serializers import DailyLogSerializer, AlimentoSerializer, ComidaDiariaSerializer, EjercicioSerializer, EjercicioRealizadoSerializer, RegistroComidaSerializer, RegistroEjercicioSerializer
 
 class DailyLogViewSet(viewsets.ModelViewSet):
     queryset = DailyLog.objects.all()
@@ -26,3 +26,7 @@ class EjercicioRealizadoViewSet(viewsets.ModelViewSet):
 class RegistroComidaViewSet(viewsets.ModelViewSet):
     queryset = RegistroComida.objects.all()
     serializer_class = RegistroComidaSerializer
+
+class RegistroEjercicioViewSet(viewsets.ModelViewSet):
+    queryset = RegistroEjercicio.objects.all()
+    serializer_class = RegistroEjercicioSerializer
