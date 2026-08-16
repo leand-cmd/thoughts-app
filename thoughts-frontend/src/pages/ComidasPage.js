@@ -2,20 +2,30 @@ import React, { useState, useEffect } from 'react';
 
 const API = 'https://thoughts-app-production.up.railway.app/api';
 
-const TIPOS = ['proteina', 'carbohidrato', 'verdura', 'fruta', 'lacteo', 'bebida', 'otro'];
+const MOMENTOS = [
+  { key: 'desayuno', label: 'Desayuno' },
+  { key: 'almuerzo', label: 'Almuerzo' },
+  { key: 'merienda', label: 'Merienda' },
+  { key: 'cena', label: 'Cena' },
+  { key: 'snack', label: 'Snack' }
+];
+
+const hoy = () => new Date().toISOString().split('T')[0];
 
 const ComidasPage = () => {
-  const [alimentos, setAlimentos] = useState([]);
-  const [nuevo, setNuevo] = useState({ nombre: '', tipo: 'proteina', descripcion: '', porcion: '' });
+  const [registros, setRegistros] = useState([]);
+  const [fecha, setFecha] = useState(hoy());
+  const [momento, setMomento] = useState('desayuno');
+  const [detalle, setDetalle] = useState('');
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => { cargar(); }, []);
 
   const cargar = async () => {
     try {
-      const res = await fetch(API + '/alimentos/');
+      const res = await fetch(API + '/registro-comidas/');
       const data = await res.json();
-      setAlimentos(data.results || []);
+      setRegistros(data.results || []);
     } catch (err) {
       console.error(err);
     }
@@ -23,14 +33,14 @@ const ComidasPage = () => {
   };
 
   const guardar = async () => {
-    if (!nuevo.nombre.trim()) return;
+    if (!detalle.trim()) return;
     try {
-      await fetch(API + '/alimentos/', {
+      await fetch(API + '/registro-comidas/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...nuevo, activo: true })
+        body: JSON.stringify({ fecha, momento, detalle })
       });
-      setNuevo({ nombre: '', tipo: 'proteina', descripcion: '', porcion: '' });
+      setDetalle('');
       cargar();
     } catch (err) {
       console.error(err);
@@ -39,7 +49,7 @@ const ComidasPage = () => {
 
   const borrar = async (id) => {
     try {
-      await fetch(API + '/alimentos/' + id + '/', { method: 'DELETE' });
+      await fetch(API + '/registro-comidas/' + id + '/', { method: 'DELETE' });
       cargar();
     } catch (err) {
       console.error(err);
@@ -69,62 +79,74 @@ const ComidasPage = () => {
     boxSizing: 'border-box'
   };
 
+  const porFecha = registros.reduce((acc, r) => {
+    if (!acc[r.fecha]) acc[r.fecha] = [];
+    acc[r.fecha].push(r);
+    return acc;
+  }, {});
+
   return (
     <div>
-      <div style={{ marginBottom: '20px' }}>
-        <h2 style={{ fontSize: '22px', fontWeight: '700', margin: 0, color: '#fff' }}>Alimentos</h2>
-        <p style={{ color: '#666', fontSize: '13px', margin: 0 }}>Tu listado para elegir cada día</p>
-      </div>
-
       <div style={caja}>
-        <div style={{ fontSize: '13px', color: '#999', marginBottom: '10px' }}>Agregar alimento</div>
-        <input style={input} placeholder="Nombre (ej: Huevo revuelto)"
-          value={nuevo.nombre} onChange={(e) => setNuevo({ ...nuevo, nombre: e.target.value })} />
-        <select style={input} value={nuevo.tipo} onChange={(e) => setNuevo({ ...nuevo, tipo: e.target.value })}>
-          {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
-        </select>
-        <input style={input} placeholder="Porción (ej: 2 unidades, 1 taza)"
-          value={nuevo.porcion} onChange={(e) => setNuevo({ ...nuevo, porcion: e.target.value })} />
-        <textarea style={{ ...input, minHeight: '60px' }} placeholder="Descripción / cómo lo preparás"
-          value={nuevo.descripcion} onChange={(e) => setNuevo({ ...nuevo, descripcion: e.target.value })} />
+        <div style={{ fontSize: '13px', color: '#999', marginBottom: '10px' }}>Registrar comida</div>
+        <input type="date" style={input} value={fecha} onChange={(e) => setFecha(e.target.value)} />
+        <div style={{ display: 'flex', gap: '4px', marginBottom: '8px', flexWrap: 'wrap' }}>
+          {MOMENTOS.map(m => (
+            <button key={m.key} onClick={() => setMomento(m.key)}
+              style={{
+                padding: '6px 10px',
+                background: momento === m.key ? '#0070ff' : 'rgba(255,255,255,0.05)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '11px'
+              }}>
+              {m.label}
+            </button>
+          ))}
+        </div>
+        <textarea style={{ ...input, minHeight: '70px' }}
+          placeholder="Ej: huevo, tomate, pan, mayonesa"
+          value={detalle} onChange={(e) => setDetalle(e.target.value)} />
         <button onClick={guardar}
           style={{ width: '100%', padding: '10px', background: '#0070ff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: '600' }}>
-          Agregar
+          Guardar
         </button>
       </div>
 
       <div style={caja}>
         <div style={{ fontSize: '13px', color: '#999', marginBottom: '10px' }}>
-          Mis alimentos ({alimentos.length})
+          Historial ({registros.length})
         </div>
         {cargando && <div style={{ color: '#666', fontSize: '13px' }}>Cargando...</div>}
-        {!cargando && alimentos.length === 0 && (
-          <div style={{ color: '#666', fontSize: '13px' }}>Todavía no cargaste ninguno.</div>
+        {!cargando && registros.length === 0 && (
+          <div style={{ color: '#666', fontSize: '13px' }}>Todavía no registraste ninguna comida.</div>
         )}
-        {alimentos.map(a => (
-          <div key={a.id} style={{
-            padding: '10px',
-            background: 'rgba(255,255,255,0.03)',
-            borderRadius: '8px',
-            marginBottom: '6px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: '8px'
-          }}>
-            <div style={{ flex: 1 }}>
-              <div style={{ color: '#fff', fontSize: '14px' }}>{a.nombre}</div>
-              <div style={{ color: '#666', fontSize: '11px' }}>
-                {a.tipo}{a.porcion ? ' · ' + a.porcion : ''}
+        {Object.keys(porFecha).sort().reverse().map(f => (
+          <div key={f} style={{ marginBottom: '12px' }}>
+            <div style={{ color: '#0070ff', fontSize: '11px', marginBottom: '4px', fontWeight: '600' }}>{f}</div>
+            {porFecha[f].map(r => (
+              <div key={r.id} style={{
+                padding: '8px 10px',
+                background: 'rgba(255,255,255,0.03)',
+                borderRadius: '8px',
+                marginBottom: '4px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                gap: '8px'
+              }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ color: '#888', fontSize: '10px', textTransform: 'uppercase' }}>{r.momento}</div>
+                  <div style={{ color: '#fff', fontSize: '13px' }}>{r.detalle}</div>
+                </div>
+                <button onClick={() => borrar(r.id)}
+                  style={{ background: 'transparent', border: 'none', color: '#666', cursor: 'pointer', fontSize: '16px' }}>
+                  ×
+                </button>
               </div>
-              {a.descripcion && (
-                <div style={{ color: '#888', fontSize: '11px', marginTop: '3px' }}>{a.descripcion}</div>
-              )}
-            </div>
-            <button onClick={() => borrar(a.id)}
-              style={{ background: 'transparent', border: 'none', color: '#666', cursor: 'pointer', fontSize: '16px' }}>
-              ×
-            </button>
+            ))}
           </div>
         ))}
       </div>
