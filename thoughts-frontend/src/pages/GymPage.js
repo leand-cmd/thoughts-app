@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ComidasPage from './ComidasPage';
 import EjerciciosPage from './EjerciciosPage';
+import MedidasPage from './MedidasPage';
 
 const GymPage = () => {
   const [solapa, setSolapa] = useState('calendario');
@@ -126,7 +127,8 @@ const GymPage = () => {
           {[
             { key: 'calendario', label: 'Calendario' },
             { key: 'comidas', label: 'Comidas' },
-            { key: 'ejercicios', label: 'Ejercicios' }
+            { key: 'ejercicios', label: 'Ejercicios' },
+            { key: 'medidas', label: 'Medidas' }
           ].map(s => (
             <button key={s.key} onClick={() => setSolapa(s.key)}
               style={{
@@ -147,6 +149,8 @@ const GymPage = () => {
         {solapa === 'comidas' && <ComidasPage />}
 
         {solapa === 'ejercicios' && <EjerciciosPage />}
+
+        {solapa === 'medidas' && <MedidasPage />}
 
         {solapa === 'calendario' && (
         <>
